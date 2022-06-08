@@ -1,0 +1,152 @@
+    <template>
+        <lightning-card variant="Narrow">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item
+                    size="12"
+                    padding="around-small"
+                >
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <td colspan="3">
+                                    <lightning-input
+                                        type="search"
+                                        variant="standard"
+                                        name="allfieldSearch"
+                                        placeholder="Key Word Search"
+                                        min-length="3"
+                                        message-when-range-underflow="Type min 3 chars"
+                                        value={searchAllValue}
+                                        onchange={handleSearchAll}
+                                    ></lightning-input>
+                                </td>
+                                <td colspan="3"> </td>
+                            </tr>
+                            <tr class="slds-line-height_reset">
+                                <td
+                                    scope="col"
+                                    style="width: 20px"
+                                >
+                                    <lightning-button-icon
+                                        variant="base"
+                                        size="small"
+                                        icon-name="utility:clear"
+                                        alternative-text="Clear Search"
+                                        onclick={clearSearch}
+                                    ></lightning-button-icon>
+                                </td>
+                                <td scope="col">
+                                    <lightning-input
+                                        type="number"
+                                        variant="standard"
+                                        name="caseNumber"
+                                        value={caseNumber}
+                                        placeholder="Document Number Search"
+                                        onkeyup={handleKeyUp}
+                                    ></lightning-input>
+                                 <lightning-input
+                                    type="number"
+                                    variant="standard"
+                                    name="caseNumber2"
+                                    value={caseNumber2}
+                                    placeholder="The Margin Of Error Search"
+                                    onkeyup={handleKeyUp2}
+                                ></lightning-input>
+                                </td>
+                                <td scope="col">
+                                    <lightning-input
+                                        type="text"
+                                        variant="standard"
+                                        name="accountName"
+                                        value={accountName}
+                                        placeholder="Document Titlle Search"
+                                        onkeyup={handleKeyUp}
+                                    ></lightning-input>
+                                </td>
+                                <td scope="col">
+                                    <lightning-input
+                                        type="text"
+                                        variant="standard"
+                                        name="contactName"
+                                        value={contactName}             
+                                        placeholder="연락처 검색"
+                                        onkeyup={handleKeyUp}
+                                    ></lightning-input>
+                                </td>
+                                <td scope="col">
+                                    <lightning-combobox
+                                        name="status"
+                                        value={status}
+                                        placeholder="Search Status"
+                                        options={statusPickListValues}
+                                        onchange={handleChange}
+                                    ></lightning-combobox>
+                                </td>
+                                <td scope="col">
+                                    <lightning-combobox
+                                        name="priority"
+                                        value={priority}
+                                        placeholder="Search Priority"
+                                        options={priorityPickListValues}
+                                        onchange={handleChange}
+                                    ></lightning-combobox>
+                                </td>
+                            </tr>
+                            
+                            <tr class="slds-line-height_reset">
+                                <th scope="col">No.</th>
+                                <th scope="col">Document Number</th>
+                                <th scope="col">Document Titlle</th>
+                                <th scope="col">연락처</th>
+                                <th scope="col">Document Type</th>
+                                <th scope="col">상태</th>
+                            </tr>
+                        </thead>
+                    
+                        <tbody>
+                            <tr
+                                class="slds-hint-parent"
+                                for:each={searchable}
+                                for:item="item"
+                                key={item.Id}
+                            >
+                                <td scope="col">{item.index}</td>
+                                <th scope="row">
+                                    <a
+                                        href="#"
+                                        onclick={handleNavigate}
+                                        data-id={item.caseData.Id}
+                                    >{item.caseData.CaseNumber}
+                                    </a>
+                                </th>
+                                <th scope="row">
+                                    <span if:true={item.caseData.Account}>
+                                        <a
+                                            href="#"
+                                            onclick={handleNavigate}
+                                            data-id={item.caseData.Account.Id}
+                                        >
+                                            {item.caseData.Account.Name}
+                                        </a>
+                                    </span>
+                                </th>
+                                <th scope="row">
+                                    <span if:true={item.caseData.Contact}>
+                                        <a
+                                            href="#"
+                                            onclick={handleNavigate}
+                                            data-id={item.caseData.Contact.Id}
+                                        >
+                                            {item.caseData.Contact.Name}
+                                        </a>
+                                    </span>
+                                </th>
+                                <th scope="row">{item.caseData.Status}</th>
+                                <th scope="row">{item.caseData.Priority}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-card>
+    </template>

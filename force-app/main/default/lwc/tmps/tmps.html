@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="test">
+
+        <lightning-layout multiple-rows="true" vertical-align="end">
+            <lightning-layout-item size="3" padding="arround-samll">
+                <lightning-input type="search" value={key} onchange={updateKey}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="3" padding="arround-samll">
+                <lightning-input type="search" value={keyword} onchange={updateKeyWord}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="1" padding="arround-samll">
+                <lightning-button label="Search" onclick={handleSearch}></lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item size="8" padding="arround-samll"></lightning-layout-item>
+        </lightning-layout>
+
+        <br>
+            <lightning-layout multiple-rows="true" vertical-align="end">
+                <lightning-layout-item size="12" padding="arround-samll">
+                    <lightning-datatable key-field="id" data={accounts} columns={cols}></lightning-datatable>
+                </lightning-layout-item>
+
+        </lightning-layout>
+        
+    <br>
+
+        <lightning-layout multiple-rows="true" vertical-align="end">
+            <lightning-layout-item size="12" padding="arround-samll"> 
+                <lightning-datatable key-field="id" data={contacts} columns={colums}></lightning-datatable>
+            </lightning-layout-item>
+
+    </lightning-layout>
+
+
+    </lightning-card>
+
+</template>
